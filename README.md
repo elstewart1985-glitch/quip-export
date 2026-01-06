@@ -39,6 +39,31 @@ node -v
 ```
 If Node.js is not installed or the version is lower than 10.16, please follow install/update instructions on [Node.js website](https://nodejs.org/en/).
 
+### Runtime and dependencies
+- Runtime: Node.js 10.16+ (includes npm).
+- Dependencies: installed via `npm install` from `package.json` (no extra system packages).
+
+### Windows step-by-step (beginner)
+1. Install Node.js LTS from https://nodejs.org/ (includes npm).
+2. Install Git for Windows from https://git-scm.com/download/win (or download the ZIP from GitHub).
+3. Open PowerShell and clone the repo:
+```
+git clone https://github.com/sonnenkern/quip-export.git
+cd quip-export
+```
+4. Install dependencies:
+```
+npm install
+```
+5. Copy the sample env file and set your token:
+```
+copy .env.example .env
+```
+6. Run the exporter (example):
+```
+node quip-export -t "YOUR_QUIP_TOKEN" -d C:\temp\quip-export
+```
+
 ### Use without installing locally
 ```
 npx quip-export [options]
@@ -78,6 +103,42 @@ Install:
 ```
 npm install quip-export
 ```
+
+## Quick start (local development)
+1. Ensure Node.js 10.16+ is installed.
+2. Install dependencies:
+```
+npm install
+```
+3. Generate a Quip personal access token: https://quip.com/dev/token
+4. Run the exporter (example):
+```
+node quip-export -t "YOUR_QUIP_TOKEN" -d c:\temp
+```
+
+### Optional environment variable (safer for beginners)
+The CLI expects the token via `-t/--token`, but you can keep the token in your shell
+environment and reference it when running the command. A sample file is provided
+in `.env.example` (do **not** commit your real token).
+
+**PowerShell**
+```
+$env:QUIP_TOKEN="YOUR_QUIP_TOKEN"
+node quip-export -t $env:QUIP_TOKEN -d c:\temp
+```
+
+**Command Prompt (cmd.exe)**
+```
+set QUIP_TOKEN=YOUR_QUIP_TOKEN
+node quip-export -t %QUIP_TOKEN% -d c:\temp
+```
+
+## Smoke test
+After `npm install`, run:
+```
+npm run smoke
+```
+Expected output: a usage/help message printed to the console.
 
 ## Options
 ```
